@@ -1,1 +1,1 @@
-export * from "./progress_middleware"
+export * from "./progressMiddleware"
