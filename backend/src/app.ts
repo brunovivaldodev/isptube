@@ -1,7 +1,8 @@
-import express from "express"
+import express, { NextFunction, Request, Response } from "express"
 import {createServer} from "http"
 import {Server} from "socket.io"
 import routes from "./routes";
+import AppError from "./errors/appError";
 
 export const app = express();
 const httpServer = createServer(app)
@@ -14,6 +15,19 @@ const io = new Server(httpServer, {
 app.use(express.json());
 
 app.use(routes)
+
+app.use((err:Error,resquest :Request,response :Response,next:NextFunction)=>{
+  if (err instanceof AppError){
+    return response.status(err.statusCode).json({
+      message : err.message
+    })
+  }
+
+  return response.status(500).json({
+    status : 'error',
+    message : `Internal Error Server -${err.stack}`
+  })
+})
 
 io.on("connection",(socket)=> console.log(`someone connected: ${socket.id}`))
 
