@@ -1,12 +1,10 @@
-import { Router } from "express"
-import mideaRoutes from "./mideas.router" 
+import { Router } from "express";
+import mideaRoutes from "./mideas.routes";
+import userRoutes from "./users.routes";
 
+const routes = Router();
 
-const routes = Router()
+routes.use("/mideas", mideaRoutes);
+routes.use("/users", userRoutes);
 
-
-routes.use("/mideas",mideaRoutes)
-
-
-
-export default routes
+export default routes;
