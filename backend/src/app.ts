@@ -3,7 +3,7 @@ import {createServer} from "http"
 import {Server} from "socket.io"
 import routes from "./routes";
 import AppError from "./errors/appError";
-
+import path from "path"
 export const app = express();
 const httpServer = createServer(app)
 const io = new Server(httpServer, {
@@ -13,6 +13,7 @@ const io = new Server(httpServer, {
   }
 })
 app.use(express.json());
+app.use(express.static(path.join(__dirname,"..", "uploads")))
 
 app.use(routes)
 
