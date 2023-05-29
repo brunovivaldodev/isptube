@@ -11,8 +11,32 @@ datasource db {
 }
 
 model User {
-  id       String @id() @db.Char(250)
-  name     String
-  email    String @unique
-  password String
+  id         String   @id() @db.Char(250)
+  name       String
+  email      String   @unique
+  password   String
+  created_at DateTime
+  updated_at DateTime
+  Midea      Midea[]
+
+  @@map("users")
+}
+
+model Midea {
+  id           String     @id() @db.Char(250)
+  name         String
+  authors      String
+  album        String?
+  music_groups String?
+  description  String?
+  genre        String?
+  release_date DateTime?
+  type         String
+  visibility   String
+  created_at   DateTime
+  updated_at   DateTime
+  user_id      String
+  user         User       @relation(fields: [user_id], references: [id])
+
+  @@map("mideas")
 }
