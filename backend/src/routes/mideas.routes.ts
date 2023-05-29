@@ -5,6 +5,7 @@ import uploadConfig from "../config/upload";
 import multer from "multer";
 
 import { MideaController } from "../controllers/mideas.controllers";
+import AppError from "../errors/appError";
 
 const mideaController = new MideaController();
 
@@ -20,7 +21,7 @@ router.post(
       name,
       authors,
       album,
-      music_groups,
+      music_group,
       description,
       genre,
       release_date,
@@ -29,11 +30,19 @@ router.post(
       user_id,
     } = request.body;
 
+    const url = request.file?.filename;
+
+    if (!url) {
+      throw new AppError("Error on Upload File,Please, Try Again", 400);
+    }
+
     await mideaController.create({
       name,
       authors,
       album,
-      music_groups,
+      music_group,
+      url,
+      cover_url: undefined,
       description,
       genre,
       release_date,

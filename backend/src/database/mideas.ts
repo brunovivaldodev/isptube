@@ -3,15 +3,17 @@ import { v4 as uuidV4 } from "uuid";
 
 export interface CreateMidea {
   name: string;
-  authors: string;
-  album: string;
-  music_groups: string;
-  description: string;
-  genre: string;
-  release_date: Date;
-  type: MideaType;
-  visibility: Visibility;
-  user_id: string;
+  authors?: string;
+  album?: string;
+  music_group?: string;
+  description?: string;
+  genre?: string;
+  release_date?: Date;
+  type: string;
+  visibility: string;
+  cover_url?: string;
+  url: string;
+  user_id : string
 }
 
 export enum Visibility {
@@ -21,7 +23,7 @@ export enum Visibility {
 
 export enum MideaType {
   video = "video",
-  music = " music",
+  music = "music",
   document = "document",
 }
 
@@ -35,6 +37,7 @@ export class DatabaseMidea {
         id: uuidV4(),
         created_at: new Date(),
         updated_at: new Date(),
+        release_date : data.release_date ? new Date(data.release_date) : undefined
       },
     });
   }

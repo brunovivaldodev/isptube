@@ -8,7 +8,6 @@ class MideaController {
   readonly databaseMidea = new DatabaseMidea();
   readonly databaseUser = new DatabaseUser();
 
-
   async create(data: CreateMideaDTO) {
     if (!(data.type in MideaType)) {
       return new AppError("MediaType Not Allowed", 400);
@@ -21,12 +20,11 @@ class MideaController {
     const userExists = await this.databaseUser.findByID(data.user_id);
 
     if (!userExists) {
-      return new AppError("User Not Exists",400);
+      return new AppError("User Not Exists", 400);
     }
 
     return await this.databaseMidea.create({
       ...data,
-      release_date : new Date(data.release_date),
       type: data.type as MideaType,
       visibility: data.visibility as Visibility,
     });
