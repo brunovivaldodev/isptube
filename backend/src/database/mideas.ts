@@ -41,4 +41,8 @@ export class DatabaseMidea {
       },
     });
   }
+
+  async list (){
+    return await this.prisma.midea.findMany({where : {visibility : Visibility.public}})
+  }
 }

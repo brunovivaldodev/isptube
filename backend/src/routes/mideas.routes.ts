@@ -52,7 +52,11 @@ router.post(
     });
 
     return response.status(200).send("File uploaded");
-  }
+  },
+
+  router.get("/",async (request,response) => {
+      return response.json(await mideaController.list()) 
+  } )
 );
 
 export default router;

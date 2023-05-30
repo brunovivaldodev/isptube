@@ -29,6 +29,9 @@ class MideaController {
       visibility: data.visibility as Visibility,
     });
   }
+  async list() {
+    return await this.databaseMidea.list()
+  }
 }
 
 export { MideaController };
