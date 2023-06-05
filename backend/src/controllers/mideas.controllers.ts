@@ -30,7 +30,11 @@ class MideaController {
     });
   }
   async list() {
-    return await this.databaseMidea.list()
+    return await this.databaseMidea.list();
+  }
+
+  async findById(id: string) {
+    return await this.databaseMidea.findById(id);
   }
 }
 

@@ -13,7 +13,7 @@ export interface CreateMidea {
   visibility: string;
   cover_url?: string;
   url: string;
-  user_id : string
+  user_id: string;
 }
 
 export enum Visibility {
@@ -37,12 +37,31 @@ export class DatabaseMidea {
         id: uuidV4(),
         created_at: new Date(),
         updated_at: new Date(),
-        release_date : data.release_date ? new Date(data.release_date) : undefined
+        release_date: data.release_date
+          ? new Date(data.release_date)
+          : undefined,
       },
     });
   }
 
-  async list (){
-    return await this.prisma.midea.findMany({where : {visibility : Visibility.public}})
+  async list() {
+    return await this.prisma.midea.findMany({
+      where: { visibility: Visibility.public },
+      include: { user: true },
+    });
+  }
+
+  async findById(id: string) {
+    const midea = await this.prisma.midea.findFirst({
+      where: { id },
+      include: { user: true },
+    });
+
+    const count = await this.prisma.midea.count({
+      where: { user_id: midea?.user.id },
+    });
+
+
+    return {midea, count};
   }
 }
