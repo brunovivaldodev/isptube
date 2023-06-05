@@ -4,17 +4,19 @@ export interface ICreateUser {
   name: string;
   email: string;
   password: string;
+  avatarUrl : string
 }
 
 export class DatabaseUser {
   readonly prisma = new PrismaClient();
 
-  async create({ email, name, password }: ICreateUser) {
+  async create({ email, name, password,avatarUrl }: ICreateUser) {
     return await this.prisma.user.create({
       data: {
         email,
         name,
         password,
+        avatarUrl,
         id: uuidV4(),
         created_at: new Date(),
         updated_at: new Date(),
@@ -28,7 +30,6 @@ export class DatabaseUser {
   }
 
   async findByID(id: string) {
-    const user = await this.prisma.user.findUnique({ where: { id } });
-    return user;
+    return await this.prisma.user.findUnique({ where: { id }, include : {Midea : true} });
   }
 }

@@ -3,4 +3,5 @@ export interface CreateUserDTO {
   email: string;
   password: string;
   confirmationPassword: string;
+  avatarUrl: string;
 }
