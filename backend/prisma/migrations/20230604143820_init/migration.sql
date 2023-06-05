@@ -1,20 +1,21 @@
 -- CreateTable
 CREATE TABLE "users" (
-    "id" CHAR(250) NOT NULL,
+    "id" TEXT NOT NULL,
     "name" TEXT NOT NULL,
     "email" TEXT NOT NULL,
     "password" TEXT NOT NULL,
     "created_at" TIMESTAMP(3) NOT NULL,
     "updated_at" TIMESTAMP(3) NOT NULL,
+    "avatarUrl" TEXT NOT NULL,
 
     CONSTRAINT "users_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
 CREATE TABLE "mideas" (
-    "id" CHAR(250) NOT NULL,
+    "id" TEXT NOT NULL,
     "name" TEXT NOT NULL,
-    "authors" TEXT NOT NULL,
+    "authors" TEXT,
     "album" TEXT,
     "music_groups" TEXT,
     "description" TEXT,
@@ -24,6 +25,8 @@ CREATE TABLE "mideas" (
     "visibility" TEXT NOT NULL,
     "created_at" TIMESTAMP(3) NOT NULL,
     "updated_at" TIMESTAMP(3) NOT NULL,
+    "cover_url" TEXT,
+    "url" TEXT NOT NULL,
     "user_id" TEXT NOT NULL,
 
     CONSTRAINT "mideas_pkey" PRIMARY KEY ("id")
