@@ -1,6 +1,7 @@
 import express, { NextFunction, Request, Response } from "express"
 import {createServer} from "http"
 import {Server} from "socket.io"
+import cors from "cors"
 import routes from "./routes";
 import AppError from "./errors/appError";
 import path from "path"
@@ -12,6 +13,7 @@ const io = new Server(httpServer, {
     credentials : false
   }
 })
+app.use(cors())
 app.use(express.json());
 app.use(express.static(path.join(__dirname,"..", "uploads")))
 
