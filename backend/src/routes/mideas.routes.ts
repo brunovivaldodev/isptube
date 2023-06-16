@@ -58,8 +58,58 @@ router.post(
       user_id,
     });
 
-    return response.status(200).send("File uploaded");
+    return response.status(200).send("Midea uploaded");
   },
+
+  router.put(
+    "/:id",
+    progress_middleware,
+    uploadAvatar.fields([
+      { name: "url", maxCount: 1 },
+      { name: "cover_url", maxCount: 1 },
+    ]),
+    async (request, response) => {
+      const {
+        name,
+        authors,
+        album,
+        music_group,
+        description,
+        genre,
+        release_date,
+        type,
+        visibility,
+      } = request.body;
+
+      const { id } = request.params;
+
+      const fields = request.files;
+      let images = null;
+
+      try {
+        if (fields) {
+          images = destructureObject(fields);
+        }
+      } catch (error) {}
+
+      await mideaController.update({
+        name,
+        authors,
+        album,
+        music_group,
+        url: images?.url.filename,
+        cover_url: images?.cover_url.filename,
+        description,
+        genre,
+        release_date,
+        type,
+        visibility,
+        id,
+      });
+
+      return response.status(200).send("Midea Updated");
+    }
+  ),
 
   router.get("/", async (request, response) => {
     return response.json(await mideaController.list());
@@ -68,14 +118,20 @@ router.post(
   router.get("/:id", async (request, response) => {
     const { id } = request.params;
 
-    const { count, midea } = await mideaController.findById(id);
+    const { count, midea } = await mideaController.findByIdAndCount(id);
     return response.json({ ...midea, count });
+  }),
+
+  router.delete("/:id", async (request, response) => {
+    const { id } = request.params;
+    await mideaController.delete(id);
+    return response.send();
   }),
 
   router.get("/stream/:id", async function (request, response) {
     const { id } = request.params;
 
-    const { midea } = await mideaController.findById(id);
+    const { midea } = await mideaController.findByIdAndCount(id);
     const path = resolve("uploads/", `${midea?.url}`);
 
     const stat = fs.statSync(path);

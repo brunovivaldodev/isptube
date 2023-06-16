@@ -5,7 +5,7 @@ export interface CreateMidea {
   name: string;
   authors?: string;
   album?: string;
-  music_group?: string;
+  music_groups?: string;
   description?: string;
   genre?: string;
   release_date?: Date;
@@ -14,6 +14,21 @@ export interface CreateMidea {
   cover_url?: string;
   url: string;
   user_id: string;
+}
+
+export interface UpdateMidea {
+  id: string;
+  name?: string;
+  authors?: string;
+  album?: string;
+  music_groups?: string;
+  description?: string;
+  genre?: string;
+  release_date?: Date;
+  type?: string;
+  visibility?: string;
+  cover_url?: string;
+  url?: string;
 }
 
 export enum Visibility {
@@ -44,6 +59,34 @@ export class DatabaseMidea {
     });
   }
 
+  async updade(data: UpdateMidea) {
+
+    const midea = await this.findById(data.id)
+    return await this.prisma.midea.update({
+      where: { id: data.id },
+      data: {
+        name : data.name ? data.name : midea?.name,
+        authors : data.authors ? data.authors : midea?.authors,
+        cover_url : data.cover_url ? data.cover_url : midea?.cover_url,
+        description : data.description ? data.description : midea?.description,
+        genre : data.genre ? data.genre : midea?.genre,
+        url : data.url ? data.url : midea?.url,
+        type : data.type ? data.type : midea?.type,
+        visibility : data.visibility ? data.visibility : midea?.visibility,
+        music_groups : data.music_groups ? data.music_groups : midea?.music_groups,
+        album : data.album ? data.album : midea?.album,
+        updated_at: new Date(),
+        release_date : data.release_date ? new Date(data.release_date) : midea?.release_date,
+      },
+    });
+  }
+
+  async delete(id: string) {
+    await this.prisma.midea.delete({
+      where: { id },
+    });
+  }
+
   async list() {
     return await this.prisma.midea.findMany({
       where: { visibility: Visibility.public },
@@ -52,6 +95,12 @@ export class DatabaseMidea {
   }
 
   async findById(id: string) {
+    return await this.prisma.midea.findFirst({
+      where: { id },
+    });
+  }
+
+  async findByIdAndCount(id: string) {
     const midea = await this.prisma.midea.findFirst({
       where: { id },
       include: { user: true },
@@ -61,7 +110,6 @@ export class DatabaseMidea {
       where: { user_id: midea?.user.id },
     });
 
-
-    return {midea, count};
+    return { midea, count };
   }
 }

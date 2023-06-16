@@ -1,7 +1,7 @@
 import { DatabaseUser } from "../database";
 import { DatabaseMidea, MideaType, Visibility } from "../database/mideas";
 import AppError from "../errors/appError";
-import { CreateMideaDTO } from "./dtos";
+import { CreateMideaDTO, UpdateMideaDTO } from "./dtos";
 
 // Data Transfer Object
 class MideaController {
@@ -33,8 +33,34 @@ class MideaController {
     return await this.databaseMidea.list();
   }
 
-  async findById(id: string) {
-    return await this.databaseMidea.findById(id);
+  async findByIdAndCount(id: string) {
+    return await this.databaseMidea.findByIdAndCount(id);
+  }
+
+  async delete(id: string) {
+    return await this.databaseMidea.delete(id);
+  }
+  
+  async update(data: UpdateMideaDTO) {
+
+    const mideaExists = await this.databaseMidea.findById(data.id);
+
+    if (!mideaExists) {
+      return new AppError("Midea Not Exists", 400);
+    }
+    if (data.type && !(data?.type in MideaType)) {
+      return new AppError("MediaType Not Allowed", 400);
+    }
+
+    if (data.visibility && !(data.visibility in Visibility)) {
+      return new AppError("Invalid Visibility Type", 400);
+    }
+
+    return await this.databaseMidea.updade({
+      ...data,
+      type: data.type as MideaType,
+      visibility: data.visibility as Visibility,
+    });
   }
 }
 
