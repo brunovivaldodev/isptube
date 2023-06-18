@@ -15,7 +15,7 @@ const uploadAvatar = multer(uploadConfig("./uploads"));
 
 const router = Router();
 router.post(
-  "/",
+  "/:id",
   progress_middleware,
   uploadAvatar.fields([
     { name: "url", maxCount: 1 },
@@ -32,8 +32,9 @@ router.post(
       release_date,
       type,
       visibility,
-      user_id,
     } = request.body;
+
+    const { id } = request.params;
 
     const fields = request.files;
 
@@ -55,7 +56,7 @@ router.post(
       release_date,
       type,
       visibility,
-      user_id,
+      user_id : id,
     });
 
     return response.status(200).send("Midea uploaded");
