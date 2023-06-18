@@ -33,6 +33,10 @@ class MideaController {
     return await this.databaseMidea.list();
   }
 
+  async listByUser(id: string) {
+    return await this.databaseMidea.listByUser(id);
+  }
+
   async findByIdAndCount(id: string) {
     return await this.databaseMidea.findByIdAndCount(id);
   }

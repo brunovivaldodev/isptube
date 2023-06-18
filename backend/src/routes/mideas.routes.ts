@@ -56,7 +56,7 @@ router.post(
       release_date,
       type,
       visibility,
-      user_id : id,
+      user_id: id,
     });
 
     return response.status(200).send("Midea uploaded");
@@ -114,6 +114,11 @@ router.post(
 
   router.get("/", async (request, response) => {
     return response.json(await mideaController.list());
+  }),
+
+  router.get("/by/:id", async (request, response) => {
+    const { id } = request.params;
+    return response.json(await mideaController.listByUser(id));
   }),
 
   router.get("/:id", async (request, response) => {

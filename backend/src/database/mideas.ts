@@ -60,23 +60,26 @@ export class DatabaseMidea {
   }
 
   async updade(data: UpdateMidea) {
-
-    const midea = await this.findById(data.id)
+    const midea = await this.findById(data.id);
     return await this.prisma.midea.update({
       where: { id: data.id },
       data: {
-        name : data.name ? data.name : midea?.name,
-        authors : data.authors ? data.authors : midea?.authors,
-        cover_url : data.cover_url ? data.cover_url : midea?.cover_url,
-        description : data.description ? data.description : midea?.description,
-        genre : data.genre ? data.genre : midea?.genre,
-        url : data.url ? data.url : midea?.url,
-        type : data.type ? data.type : midea?.type,
-        visibility : data.visibility ? data.visibility : midea?.visibility,
-        music_groups : data.music_groups ? data.music_groups : midea?.music_groups,
-        album : data.album ? data.album : midea?.album,
+        name: data.name ? data.name : midea?.name,
+        authors: data.authors ? data.authors : midea?.authors,
+        cover_url: data.cover_url ? data.cover_url : midea?.cover_url,
+        description: data.description ? data.description : midea?.description,
+        genre: data.genre ? data.genre : midea?.genre,
+        url: data.url ? data.url : midea?.url,
+        type: data.type ? data.type : midea?.type,
+        visibility: data.visibility ? data.visibility : midea?.visibility,
+        music_groups: data.music_groups
+          ? data.music_groups
+          : midea?.music_groups,
+        album: data.album ? data.album : midea?.album,
         updated_at: new Date(),
-        release_date : data.release_date ? new Date(data.release_date) : midea?.release_date,
+        release_date: data.release_date
+          ? new Date(data.release_date)
+          : midea?.release_date,
       },
     });
   }
@@ -90,6 +93,16 @@ export class DatabaseMidea {
   async list() {
     return await this.prisma.midea.findMany({
       where: { visibility: Visibility.public },
+      include: { user: true },
+    });
+  }
+
+  async listByUser(id: string) {
+    return await this.prisma.midea.findMany({
+      where: {
+        user_id: id,
+        visibility: Visibility.public,
+      },
       include: { user: true },
     });
   }
