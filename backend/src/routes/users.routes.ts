@@ -33,6 +33,17 @@ router.post("/", uploadAvatar.single("avatar"), async (request, response) => {
   return response.json(user);
 });
 
+router.post("/login", async (request, response) => {
+  const { email, password } = request.body;
+
+  const user = await usersController.login({
+    email,
+    password,
+  });
+
+  return response.json(user);
+});
+
 router.get("/:id", async (request, response) => {
   const { id } = request.params;
 
