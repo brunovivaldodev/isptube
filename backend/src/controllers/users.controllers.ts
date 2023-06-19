@@ -61,7 +61,7 @@ class UserControllers {
     const passwordMatch = await compare(password, userExists.password);
 
     if (!passwordMatch) {
-      return new AppError("Email or Password Incorret");
+      return new AppError("Email or Password Incorret", 400);
     }
 
     const token = sign(

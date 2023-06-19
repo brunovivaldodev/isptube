@@ -11,7 +11,7 @@ const usersController = new UserControllers();
 
 const uploadAvatar = multer(uploadConfig("./uploads"));
 
-router.post("/", uploadAvatar.single("avatar"), async (request, response) => {
+router.post("/", uploadAvatar.single("cover_url"), async (request, response) => {
   const { name, email, password, confirmationPassword, description } =
     request.body;
 
@@ -21,7 +21,7 @@ router.post("/", uploadAvatar.single("avatar"), async (request, response) => {
     throw new AppError("Error on Upload File,Please, Try Again", 400);
   }
 
-  const user = await usersController.create({
+  const userToken = await usersController.create({
     name,
     email,
     password,
@@ -30,18 +30,18 @@ router.post("/", uploadAvatar.single("avatar"), async (request, response) => {
     description,
   });
 
-  return response.json(user);
+  return response.json(userToken);
 });
 
 router.post("/login", async (request, response) => {
   const { email, password } = request.body;
 
-  const user = await usersController.login({
+  const userToken = await usersController.login({
     email,
     password,
   });
 
-  return response.json(user);
+  return response.json(userToken);
 });
 
 router.get("/:id", async (request, response) => {
