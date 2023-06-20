@@ -118,7 +118,7 @@ export class DatabaseMidea {
 
     const users = await this.prisma.user.findMany({
       where: { name: { contains: query, mode: "insensitive" } },
-      include: { Midea: { where: { visibility: Visibility.public } } },
+      include: { midea: { where: { visibility: Visibility.public } } },
     });
 
     return { mideas, users };

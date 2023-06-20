@@ -11,21 +11,22 @@ datasource db {
 }
 
 model User {
-  id          String   @id()
+  id          String     @id()
   name        String
-  email       String   @unique
+  email       String     @unique
   password    String
   description String?
   created_at  DateTime
   updated_at  DateTime
   avatarUrl   String
-  Midea       Midea[]
+  midea       Midea[]
+  Comments    Comments[]
 
   @@map("users")
 }
 
 model Midea {
-  id           String    @id()
+  id           String     @id()
   name         String
   authors      String?
   album        String?
@@ -39,9 +40,20 @@ model Midea {
   updated_at   DateTime
   cover_url    String?
   url          String
-
-  user_id String
-  user    User   @relation(fields: [user_id], references: [id])
+  user_id      String
+  user         User       @relation(fields: [user_id], references: [id])
+  Comments     Comments[]
 
   @@map("mideas")
+}
+
+model Comments {
+  id       String @id()
+  message  String
+  midea_id String
+  midea    Midea  @relation(fields: [midea_id], references: [id])
+  user_id  String
+  user     User   @relation(fields: [user_id], references: [id])
+
+  @@map("comments")
 }
