@@ -107,6 +107,25 @@ export class DatabaseMidea {
     });
   }
 
+  async search(query: string) {
+    const mideas = await this.prisma.midea.findMany({
+      where: {
+        name: { contains: query, mode: "insensitive" },
+        visibility: Visibility.public,
+      },
+      include: {
+        user: true,
+      },
+    });
+
+    const users = await this.prisma.user.findMany({
+      where: { name: { contains: query, mode: "insensitive" } },
+      include: { Midea: { where: { visibility: Visibility.public } } },
+    });
+
+    return { mideas, users };
+  }
+
   async findById(id: string) {
     return await this.prisma.midea.findFirst({
       where: { id },

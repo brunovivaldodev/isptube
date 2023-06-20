@@ -121,6 +121,18 @@ router.post(
     return response.json(await mideaController.listByUser(id));
   }),
 
+  router.get("/search", async (request, response) => {
+    const { query } = request.query;
+
+    const queryDecoded = decodeURIComponent(query as string);
+
+    if (!queryDecoded) {
+      return;
+    }
+
+    return response.json(await mideaController.search(queryDecoded));
+  }),
+
   router.get("/:id", async (request, response) => {
     const { id } = request.params;
 

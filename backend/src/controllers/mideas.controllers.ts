@@ -37,6 +37,10 @@ class MideaController {
     return await this.databaseMidea.listByUser(id);
   }
 
+  async search(query: string) {
+    return await this.databaseMidea.search(query);
+  }
+
   async findByIdAndCount(id: string) {
     return await this.databaseMidea.findByIdAndCount(id);
   }
@@ -44,9 +48,8 @@ class MideaController {
   async delete(id: string) {
     return await this.databaseMidea.delete(id);
   }
-  
-  async update(data: UpdateMideaDTO) {
 
+  async update(data: UpdateMideaDTO) {
     const mideaExists = await this.databaseMidea.findById(data.id);
 
     if (!mideaExists) {
