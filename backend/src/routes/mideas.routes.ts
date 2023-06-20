@@ -34,6 +34,7 @@ router.post(
       visibility,
     } = request.body;
 
+
     const { id } = request.params;
 
     const fields = request.files;

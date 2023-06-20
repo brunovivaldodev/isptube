@@ -29,7 +29,7 @@ model Midea {
   name         String
   authors      String?
   album        String?
-  music_groups String?
+  music_group  String?
   description  String?
   genre        String?
   release_date DateTime?

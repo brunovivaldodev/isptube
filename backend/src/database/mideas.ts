@@ -5,7 +5,7 @@ export interface CreateMidea {
   name: string;
   authors?: string;
   album?: string;
-  music_groups?: string;
+  music_group?: string;
   description?: string;
   genre?: string;
   release_date?: Date;
@@ -21,7 +21,7 @@ export interface UpdateMidea {
   name?: string;
   authors?: string;
   album?: string;
-  music_groups?: string;
+  music_group?: string;
   description?: string;
   genre?: string;
   release_date?: Date;
@@ -72,9 +72,7 @@ export class DatabaseMidea {
         url: data.url ? data.url : midea?.url,
         type: data.type ? data.type : midea?.type,
         visibility: data.visibility ? data.visibility : midea?.visibility,
-        music_groups: data.music_groups
-          ? data.music_groups
-          : midea?.music_groups,
+        music_group: data.music_group ? data.music_group : midea?.music_group,
         album: data.album ? data.album : midea?.album,
         updated_at: new Date(),
         release_date: data.release_date
