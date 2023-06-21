@@ -1,7 +1,7 @@
 import { DatabaseUser } from "../database";
 import { DatabaseMidea, MideaType, Visibility } from "../database/mideas";
 import AppError from "../errors/appError";
-import { CreateMideaDTO, UpdateMideaDTO } from "./dtos";
+import { CreateCommentDTO, CreateMideaDTO, UpdateMideaDTO } from "./dtos";
 
 // Data Transfer Object
 class MideaController {
@@ -67,6 +67,25 @@ class MideaController {
       ...data,
       type: data.type as MideaType,
       visibility: data.visibility as Visibility,
+    });
+  }
+
+  async createComment({ message, midea_id, user_id }: CreateCommentDTO) {
+    const userExists = await this.databaseUser.findByID(user_id);
+    const mideaExists = await this.databaseMidea.findById(midea_id);
+
+    if (!userExists) {
+      return new AppError("User Not Exists", 400);
+    }
+
+    if (!mideaExists) {
+      return new AppError("Midea Not Exists", 400);
+    }
+
+    return await this.databaseMidea.createComment({
+      message,
+      midea_id,
+      user_id,
     });
   }
 }

@@ -16,11 +16,11 @@ model User {
   email       String     @unique
   password    String
   description String?
-  created_at  DateTime
-  updated_at  DateTime
   avatarUrl   String
   midea       Midea[]
-  Comments    Comments[]
+  comments    Comments[]
+  created_at  DateTime
+  updated_at  DateTime
 
   @@map("users")
 }
@@ -36,24 +36,26 @@ model Midea {
   release_date DateTime?
   type         String
   visibility   String
-  created_at   DateTime
-  updated_at   DateTime
   cover_url    String?
   url          String
   user_id      String
   user         User       @relation(fields: [user_id], references: [id])
-  Comments     Comments[]
+  comments     Comments[]
+  created_at   DateTime
+  updated_at   DateTime
 
   @@map("mideas")
 }
 
 model Comments {
-  id       String @id()
-  message  String
-  midea_id String
-  midea    Midea  @relation(fields: [midea_id], references: [id])
-  user_id  String
-  user     User   @relation(fields: [user_id], references: [id])
+  id         String   @id()
+  message    String
+  midea_id   String
+  midea      Midea    @relation(fields: [midea_id], references: [id])
+  user_id    String
+  user       User     @relation(fields: [user_id], references: [id])
+  created_at DateTime
+  updated_at DateTime
 
   @@map("comments")
 }

@@ -5,9 +5,9 @@ CREATE TABLE "users" (
     "email" TEXT NOT NULL,
     "password" TEXT NOT NULL,
     "description" TEXT,
+    "avatarUrl" TEXT NOT NULL,
     "created_at" TIMESTAMP(3) NOT NULL,
     "updated_at" TIMESTAMP(3) NOT NULL,
-    "avatarUrl" TEXT NOT NULL,
 
     CONSTRAINT "users_pkey" PRIMARY KEY ("id")
 );
@@ -24,11 +24,11 @@ CREATE TABLE "mideas" (
     "release_date" TIMESTAMP(3),
     "type" TEXT NOT NULL,
     "visibility" TEXT NOT NULL,
-    "created_at" TIMESTAMP(3) NOT NULL,
-    "updated_at" TIMESTAMP(3) NOT NULL,
     "cover_url" TEXT,
     "url" TEXT NOT NULL,
     "user_id" TEXT NOT NULL,
+    "created_at" TIMESTAMP(3) NOT NULL,
+    "updated_at" TIMESTAMP(3) NOT NULL,
 
     CONSTRAINT "mideas_pkey" PRIMARY KEY ("id")
 );
@@ -39,6 +39,8 @@ CREATE TABLE "comments" (
     "message" TEXT NOT NULL,
     "midea_id" TEXT NOT NULL,
     "user_id" TEXT NOT NULL,
+    "created_at" TIMESTAMP(3) NOT NULL,
+    "updated_at" TIMESTAMP(3) NOT NULL,
 
     CONSTRAINT "comments_pkey" PRIMARY KEY ("id")
 );

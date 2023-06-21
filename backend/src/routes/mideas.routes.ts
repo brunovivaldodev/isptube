@@ -177,6 +177,20 @@ router.post(
       response.writeHead(200, head);
       fs.createReadStream(path).pipe(response);
     }
+  }),
+
+  router.post("/:id/comment", async (request, response) => {
+    const { message, user_id } = request.body;
+
+    const { id } = request.params;
+
+    await mideaController.createComment({
+      midea_id: id,
+      message,
+      user_id,
+    });
+
+    return response.status(200).send();
   })
 );
 

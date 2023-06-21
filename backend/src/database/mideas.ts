@@ -39,7 +39,27 @@ export enum Visibility {
 export enum MideaType {
   video = "video",
   music = "music",
-  document = "document",
+}
+
+export interface CreateMidea {
+  name: string;
+  authors?: string;
+  album?: string;
+  music_group?: string;
+  description?: string;
+  genre?: string;
+  release_date?: Date;
+  type: string;
+  visibility: string;
+  cover_url?: string;
+  url: string;
+  user_id: string;
+}
+
+export interface CreateComment {
+  message: string;
+  user_id: string;
+  midea_id: string;
 }
 
 export class DatabaseMidea {
@@ -133,7 +153,8 @@ export class DatabaseMidea {
   async findByIdAndCount(id: string) {
     const midea = await this.prisma.midea.findFirst({
       where: { id },
-      include: { user: true },
+      include: { user: true, comments: { include: { user: true } } },
+      orderBy: { comments: { _count: "asc" } },
     });
 
     const count = await this.prisma.midea.count({
@@ -141,5 +162,18 @@ export class DatabaseMidea {
     });
 
     return { midea, count };
+  }
+
+  async createComment(data: CreateComment) {
+    return await this.prisma.comments.create({
+      data: {
+        id: uuidV4(),
+        message: data.message,
+        midea_id: data.midea_id,
+        user_id: data.user_id,
+        created_at: new Date(),
+        updated_at: new Date(),
+      },
+    });
   }
 }
