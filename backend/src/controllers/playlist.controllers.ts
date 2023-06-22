@@ -41,6 +41,10 @@ class PlaylistControllers {
   async list() {
     return await this.databasePlaylist.list();
   }
+
+  async delete(id: string) {
+    return await this.databasePlaylist.delete(id);
+  }
 }
 
 export { PlaylistControllers };

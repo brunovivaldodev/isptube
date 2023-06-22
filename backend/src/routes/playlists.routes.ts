@@ -36,4 +36,12 @@ router.get("/", async (request, response) => {
   return response.json(playlist);
 });
 
+router.delete("/:id", async (request, response) => {
+  const { id } = request.params;
+
+  const playlist = await playlistController.delete(id);
+
+  return response.json(playlist);
+});
+
 export default router;

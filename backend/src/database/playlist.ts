@@ -48,4 +48,10 @@ export class DatabasePlaylist {
       include: { mideas: true },
     });
   }
+
+  async delete(id: string) {
+    await this.prisma.playlist.delete({
+      where: { id },
+    });
+  }
 }
