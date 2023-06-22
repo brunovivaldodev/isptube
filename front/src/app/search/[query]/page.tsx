@@ -49,7 +49,7 @@ export default async function Search({ params: { query } }: Params) {
           )}
           {usersFetched.map((user) => {
             return (
-              <div className="flex">
+              <div className="flex" key={user.id}>
                 <div className="w-[140]">
                   <figure className="w-16 h-16 rounded-full overflow-hidden">
                     <Image

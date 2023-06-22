@@ -12,9 +12,13 @@ export function SideBar() {
     <aside className="flex flex-col w-64 p-6">
       <section className="flex flex-col items-center space-y-3">
         <Link href={"/"}>
-          <figure className="items-center">
-            <img src="/logo.svg" alt="logo do isptube" />
-          </figure>
+          <Image
+            src="/logo.svg"
+            alt="Profile Avatar"
+            width={100}
+            height={32}
+            className="bg-cover object-contain"
+          />
         </Link>
 
         <figure className="w-16 h-16 rounded-full overflow-hidden">
@@ -41,7 +45,7 @@ export function SideBar() {
           <ThumbsUp />
           Curtidos
         </a>
-        
+
         <a href="" className="flex items-center gap-6 m-4">
           {" "}
           <ListVideo />
