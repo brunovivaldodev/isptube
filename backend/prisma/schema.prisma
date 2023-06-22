@@ -21,6 +21,7 @@ model User {
   comments    Comments[]
   created_at  DateTime
   updated_at  DateTime
+  playlists   Playlist[]
 
   @@map("users")
 }
@@ -43,8 +44,23 @@ model Midea {
   comments     Comments[]
   created_at   DateTime
   updated_at   DateTime
+  playlists    Playlist[]
 
   @@map("mideas")
+}
+
+model Playlist {
+  id          String   @id
+  name        String
+  description String?
+  visibility  String
+  created_at  DateTime
+  updated_at  DateTime
+  mideas      Midea[]
+  User        User     @relation(fields: [user_id], references: [id])
+  user_id     String
+
+  @@map("playlists")
 }
 
 model Comments {
