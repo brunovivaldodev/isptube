@@ -30,4 +30,10 @@ router.post("/:id/add", async (request, response) => {
   return response.json(playlist);
 });
 
+router.get("/", async (request, response) => {
+  const playlist = await playlistController.list();
+
+  return response.json(playlist);
+});
+
 export default router;

@@ -37,6 +37,10 @@ class PlaylistControllers {
 
     return playlist;
   }
+
+  async list() {
+    return await this.databasePlaylist.list();
+  }
 }
 
 export { PlaylistControllers };

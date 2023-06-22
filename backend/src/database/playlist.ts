@@ -42,4 +42,10 @@ export class DatabasePlaylist {
       where: { id },
     });
   }
+  async list() {
+    return await this.prisma.playlist.findMany({
+      where: { visibility: Visibility.public },
+      include: { mideas: true },
+    });
+  }
 }
