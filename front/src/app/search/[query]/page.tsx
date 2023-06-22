@@ -88,7 +88,7 @@ export default async function Search({ params: { query } }: Params) {
               return (
                 <div key={midea.id} className="w-64">
                   <Link href={`/midea/${midea.id}`}>
-                    <div className={`r h-32 relative overflow-hidden`}>
+                    <div className={`h-32 relative overflow-hidden`}>
                       <Image
                         src={`${api.getUri()}/${midea.cover_url}`}
                         alt=""

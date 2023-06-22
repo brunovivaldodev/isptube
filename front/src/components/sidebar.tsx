@@ -46,11 +46,10 @@ export function SideBar() {
           Curtidos
         </a>
 
-        <a href="" className="flex items-center gap-6 m-4">
-          {" "}
+        <Link className="flex items-center gap-6 m-4" href={`/playlists`}>
           <ListVideo />
           Playlists
-        </a>
+        </Link>
 
         <Link
           className="flex items-center gap-6 m-4"
