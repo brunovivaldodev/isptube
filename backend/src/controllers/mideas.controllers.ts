@@ -1,5 +1,9 @@
-import { DatabaseUser } from "../database";
-import { DatabaseMidea, MideaType, Visibility } from "../database/mideas";
+import {
+  DatabaseUser,
+  DatabaseMidea,
+  MideaType,
+  Visibility,
+} from "../database";
 import AppError from "../errors/appError";
 import { CreateCommentDTO, CreateMideaDTO, UpdateMideaDTO } from "./dtos";
 
