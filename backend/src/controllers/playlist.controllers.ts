@@ -21,6 +21,18 @@ class PlaylistControllers {
 
     return playlist;
   }
+
+  async addmidea(id: string, midea_id: string) {
+    const playlistExists = await this.databasePlaylist.findById(id);
+
+    if (!playlistExists) {
+      return new AppError("Playlist Not Exists", 400);
+    }
+
+    const playlist = await this.databasePlaylist.addMidea(id, midea_id);
+
+    return playlist;
+  }
 }
 
 export { PlaylistControllers };

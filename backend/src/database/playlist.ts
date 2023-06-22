@@ -24,4 +24,22 @@ export class DatabasePlaylist {
       },
     });
   }
+
+  async addMidea(id: string, mideaId: string) {
+    return await this.prisma.playlist.update({
+      where: { id },
+      data: {
+        mideas: {
+          connect: {
+            id: mideaId,
+          },
+        },
+      },
+    });
+  }
+  async findById(id: string) {
+    return await this.prisma.playlist.findUnique({
+      where: { id },
+    });
+  }
 }
