@@ -54,4 +54,11 @@ export class DatabasePlaylist {
       where: { id },
     });
   }
+
+  async listByUser(id: string) {
+    return await this.prisma.playlist.findMany({
+      where: { user_id: id },
+      include: { mideas: true },
+    });
+  }
 }

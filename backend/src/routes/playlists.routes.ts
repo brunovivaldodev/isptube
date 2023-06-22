@@ -44,4 +44,9 @@ router.delete("/:id", async (request, response) => {
   return response.json(playlist);
 });
 
+router.get("/by/:id", async (request, response) => {
+  const { id } = request.params;
+  return response.json(await playlistController.listByUser(id));
+});
+
 export default router;
