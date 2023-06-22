@@ -1,6 +1,6 @@
 import { CreatePlaylistDTO } from "./dtos";
 import AppError from "../errors/appError";
-import { DatabasePlaylist, DatabaseUser } from "../database";
+import { DatabasePlaylist, DatabaseUser, Visibility } from "../database";
 
 class PlaylistControllers {
   readonly databasePlaylist = new DatabasePlaylist();
@@ -11,6 +11,10 @@ class PlaylistControllers {
 
     if (!userExists) {
       return new AppError("User Not Exists", 400);
+    }
+
+    if (!(visibility in Visibility)) {
+      return new AppError("Invalid Visibility Type", 400);
     }
     const playlist = await this.databasePlaylist.create({
       name,
