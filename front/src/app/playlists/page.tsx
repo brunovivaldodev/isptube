@@ -7,7 +7,7 @@ import Link from "next/link";
 import { Mideas } from "../home/page";
 import { ListVideo } from "lucide-react";
 
-interface Playlists {
+export interface Playlists {
   id: string;
   name: string;
   description: string;
@@ -45,7 +45,7 @@ export default async function Playlists() {
             {playlists.map((playlist) => {
               return (
                 <div key={playlist.id} className="w-64">
-                  <Link href={`/midea/${playlist.id}`}>
+                  <Link href={`/playlists/${playlist.id}`}>
                     <div className={`h-32 relative overflow-hidden bg-white`}>
                       <Image
                         src={
