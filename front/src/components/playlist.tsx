@@ -4,23 +4,24 @@ import Image from "next/image";
 import Link from "next/link";
 
 interface Props {
+  name: string;
   mideas: Mideas[];
   exclude: string;
 }
-export function Mideas({ mideas, exclude }: Props) {
-  const usersMideas = mideas.filter((mideas) => mideas.id !== exclude);
+export function Playlist({ mideas, exclude, name }: Props) {
+  const playlist = mideas.filter((mideas) => mideas.id !== exclude);
   return (
     <section className="flex flex-col w-60 mt-10 ml-6">
       <div className="flex flex-col space-x-10">
         <div className="flex items-center p-2 rounded-full bg-red-700">
           <p className="flex items-center gap-5 mx-auto text-sm">
-            Mideas Do Usuário
+            Playlist: {name}
           </p>
         </div>
-        {usersMideas.length === 0 ? (
+        {playlist.length === 0 ? (
           <div className="flex flex-1 items-center justify-center my-6">
             <p className="leading-relaxed w-full">
-              Usuário sem mídeas disponível.
+              Sem mias mídeas disponíveis na playlist para mostrar.
             </p>
           </div>
         ) : (
@@ -28,7 +29,7 @@ export function Mideas({ mideas, exclude }: Props) {
         )}
       </div>
 
-      {usersMideas.map((midea) => {
+      {playlist.map((midea) => {
         return (
           <div key={midea.id} className="my-4">
             <Link href={`/midea/${midea.id}`}>
