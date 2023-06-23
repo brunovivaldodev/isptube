@@ -40,12 +40,6 @@ export function SideBar() {
           Home
         </Link>
 
-        <a href="" className="flex items-center gap-6 m-4">
-          {" "}
-          <ThumbsUp />
-          Curtidos
-        </a>
-
         <Link className="flex items-center gap-6 m-4" href={`/playlists`}>
           <ListVideo />
           Playlists

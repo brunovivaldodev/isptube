@@ -108,8 +108,16 @@ export function PlaylistPlayer({ playlist, userLogged }: Props) {
                 width={900}
               ></video>
               <div className="flex place-content-between">
-                <button onClick={handlePreviousClick}>Previous</button>
-                <button onClick={handleNextClick} className="mr-7">
+                <button
+                  onClick={handlePreviousClick}
+                  className="hover:text-red-700"
+                >
+                  Previous
+                </button>
+                <button
+                  onClick={handleNextClick}
+                  className="hover:text-red-700 mr-7"
+                >
                   Next
                 </button>
               </div>
@@ -126,7 +134,7 @@ export function PlaylistPlayer({ playlist, userLogged }: Props) {
                     ).toDateString()}
                   </p>
                 </div>
-                <div className="flex space-x-4">
+                <div className="flex space-x-4 mx-7 items-center">
                   <p className="flex items-center">
                     <ThumbsUp width={16} height={16} className="mx-2" />
                     200
@@ -138,14 +146,6 @@ export function PlaylistPlayer({ playlist, userLogged }: Props) {
                   <CopyToClipboard
                     link={`${nextApi}/midea/${list.mideas[currentVideo].id}`}
                   />
-                  <p className="flex items-center">
-                    <ListPlus width={16} height={16} className="mx-2" />
-                    Save
-                  </p>
-                  <p className="flex items-center">
-                    <ArrowDownToLine width={16} height={16} className="mx-2" />
-                    Download
-                  </p>
                 </div>
               </div>
               <div className="mt-3">

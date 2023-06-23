@@ -64,7 +64,7 @@ export default async function Midea({ params: { id } }: Params) {
                   {new Date(midea.created_at).toDateString()}
                 </p>
               </div>
-              <div className="flex space-x-4">
+              <div className="flex space-x-4 mx-7">
                 <p className="flex items-center">
                   <ThumbsUp width={16} height={16} className="mx-2" />
                   200
@@ -79,10 +79,6 @@ export default async function Midea({ params: { id } }: Params) {
                   mideaId={midea.id}
                   userId={userLogged.sub}
                 />
-                <p className="flex items-center">
-                  <ArrowDownToLine width={16} height={16} className="mx-2" />
-                  Download
-                </p>
               </div>
             </div>
             <div className="mt-3">
