@@ -7,6 +7,7 @@ import Link from "next/link";
 import { Mideas } from "../home/page";
 import { ListVideo } from "lucide-react";
 import { CreatePlaylistModal } from "@/components/createPlaylistModal";
+import { DeletePlaylist } from "@/components/deletePlaylist";
 
 export interface Playlists {
   id: string;
@@ -49,10 +50,10 @@ export default async function Playlists() {
             {playlists.map((playlist) => {
               return (
                 <div key={playlist.id} className="flex space-x-8">
-                  <Link href={`/playlists/${playlist.id}`}>
-                    <div
-                      className={`h-32 w-64 relative overflow-hidden bg-white`}
-                    >
+                  <div
+                    className={`h-32 w-64 relative overflow-hidden bg-white`}
+                  >
+                    <Link href={`/playlists/${playlist.id}`}>
                       <Image
                         src={
                           playlist.mideas.length === 0
@@ -69,8 +70,9 @@ export default async function Playlists() {
                           {playlist.mideas.length}
                         </span>
                       </div>
-                    </div>
-                  </Link>
+                    </Link>
+                    <DeletePlaylist id={playlist.id} />
+                  </div>
 
                   <div className="flex flex-col flex-1 place-content-between">
                     <p className="font-normal mt-1">{playlist.name}</p>
