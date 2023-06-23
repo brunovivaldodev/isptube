@@ -42,6 +42,10 @@ class PlaylistControllers {
     return await this.databasePlaylist.list();
   }
 
+  async findById(id: string) {
+    return await this.databasePlaylist.findByAndMideas(id);
+  }
+
   async delete(id: string) {
     return await this.databasePlaylist.delete(id);
   }

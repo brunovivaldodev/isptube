@@ -36,6 +36,14 @@ router.get("/", async (request, response) => {
   return response.json(playlist);
 });
 
+router.get("/:id", async (request, response) => {
+  const { id } = request.params;
+
+  const playlist = await playlistController.findById(id);
+
+  return response.json(playlist);
+});
+
 router.delete("/:id", async (request, response) => {
   const { id } = request.params;
 

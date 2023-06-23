@@ -42,6 +42,17 @@ export class DatabasePlaylist {
       where: { id },
     });
   }
+
+  async findByAndMideas(id: string) {
+    return await this.prisma.playlist.findUnique({
+      where: { id },
+      include: {
+        mideas: {
+          include: { comments: { include: { user: true } }, user: true },
+        },
+      },
+    });
+  }
   async list() {
     return await this.prisma.playlist.findMany({
       where: { visibility: Visibility.public },
