@@ -48,9 +48,11 @@ export default async function Playlists() {
             )}
             {playlists.map((playlist) => {
               return (
-                <div key={playlist.id} className="w-64">
+                <div key={playlist.id} className="flex space-x-8">
                   <Link href={`/playlists/${playlist.id}`}>
-                    <div className={`h-32 relative overflow-hidden bg-white`}>
+                    <div
+                      className={`h-32 w-64 relative overflow-hidden bg-white`}
+                    >
                       <Image
                         src={
                           playlist.mideas.length === 0
@@ -70,11 +72,17 @@ export default async function Playlists() {
                     </div>
                   </Link>
 
-                  <div className="flex place-content-between">
-                    <span className="font-normal mt-1">{playlist.name}</span>
-                    <span className="font-light text-sm	mt-1">{`${new Date(
+                  <div className="flex flex-col flex-1 place-content-between">
+                    <p className="font-normal mt-1">{playlist.name}</p>
+                    <p className="font-normal mt-1">{playlist.description}</p>
+
+                    <Link href={`/playlists/${playlist.id}`}>
+                      VER PLAYLIST COMPLETA
+                    </Link>
+
+                    <p className="font-light text-sm	mt-1">{`${new Date(
                       playlist.created_at
-                    ).toDateString()}`}</span>
+                    ).toDateString()}`}</p>
                   </div>
                 </div>
               );
