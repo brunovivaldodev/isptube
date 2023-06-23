@@ -51,15 +51,15 @@ export function PlaylistPlayer({ playlist, userLogged }: Props) {
 
   function handlePreviousClick() {
     if (currentVideo !== 0) {
+      setComments(list.mideas[currentVideo - 1].comments);
       setCurrentVideo(currentVideo - 1);
-      setComments(list.mideas[currentVideo].comments);
     }
   }
 
   function handleNextClick() {
     if (currentVideo !== list.mideas.length - 1) {
+      setComments(list.mideas[currentVideo + 1].comments);
       setCurrentVideo(currentVideo + 1);
-      setComments(list.mideas[currentVideo].comments);
     }
   }
 
