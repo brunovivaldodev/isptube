@@ -6,6 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Mideas } from "../home/page";
 import { ListVideo } from "lucide-react";
+import { CreatePlaylistModal } from "@/components/createPlaylistModal";
 
 export interface Playlists {
   id: string;
@@ -30,7 +31,10 @@ export default async function Playlists() {
 
       <div className="flex mt-6">
         <section className="flex-1">
-          <div className="my-2">Playlists</div>
+          <div className="flex my-2 place-content-between">
+            <span>Playlists</span>
+            <CreatePlaylistModal userId={loggedUser} />
+          </div>
 
           <div className="flex flex-col gap-6 content-around">
             {playlists.length === 0 ? (

@@ -24,7 +24,7 @@ export function EditModal({ midea }: Props) {
     setIsOpen(true);
   }
 
-  async function handleCreateMemory(event: FormEvent<HTMLFormElement>) {
+  async function handleEditMidea(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
 
@@ -61,7 +61,7 @@ export function EditModal({ midea }: Props) {
                     Editar {mideaType}
                   </Dialog.Title>
                   <form
-                    onSubmit={handleCreateMemory}
+                    onSubmit={handleEditMidea}
                     className="flex flex-1 flex-col gap-2"
                   >
                     <div className="">
