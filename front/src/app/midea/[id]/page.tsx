@@ -8,6 +8,8 @@ import Image from "next/image";
 import { getUser } from "@/contexts/auth";
 import { Comment } from "@/components/CommentForm";
 import { CopyToClipboard } from "@/components/copyClipboard";
+import { AddToPlaylist } from "@/components/addToPlaylist";
+import { Playlists } from "@/app/playlists/page";
 
 interface Params {
   params: {
@@ -21,6 +23,10 @@ export default async function Midea({ params: { id } }: Params) {
     .data as Midea[];
 
   const userLogged = getUser();
+
+  const response = await api.get(`/playlists/by/${userLogged.sub}`);
+
+  const playlists = response.data as Playlists[];
 
   const isMusic = midea.type === "music";
 
@@ -68,10 +74,11 @@ export default async function Midea({ params: { id } }: Params) {
                   20
                 </p>
                 <CopyToClipboard link={`${nextApi}/midea/${midea.id}`} />
-                <p className="flex items-center">
-                  <ListPlus width={16} height={16} className="mx-2" />
-                  Save
-                </p>
+                <AddToPlaylist
+                  playlist={playlists}
+                  mideaId={midea.id}
+                  userId={userLogged.sub}
+                />
                 <p className="flex items-center">
                   <ArrowDownToLine width={16} height={16} className="mx-2" />
                   Download

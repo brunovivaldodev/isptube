@@ -45,7 +45,7 @@ export function CreatePlaylistModal({ userId }: Props) {
         <button
           type="button"
           onClick={openModal}
-          className="w-40 h-8 flex items-center rounded-full bg-red-700 bg-opacity-20 px-4 py-2 text-sm font-medium text-white hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
+          className="w-40 h-8 flex items-center rounded-full bg-red-700 bg-opacity-40 px-4 py-2 text-sm font-medium text-white hover:bg-opacity-60 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
         >
           <ListPlus className="mx-2" />
           Criar Playlist
