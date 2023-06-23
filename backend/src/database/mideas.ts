@@ -141,7 +141,15 @@ export class DatabaseMidea {
       include: { midea: { where: { visibility: Visibility.public } } },
     });
 
-    return { mideas, users };
+    const playlists = await this.prisma.playlist.findMany({
+      where: {
+        name: { contains: query, mode: "insensitive" },
+        visibility: Visibility.public,
+      },
+      include: { mideas: true },
+    });
+
+    return { mideas, users, playlists };
   }
 
   async findById(id: string) {
