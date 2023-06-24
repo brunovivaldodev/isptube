@@ -25,6 +25,7 @@ export function MediaAudioPicker() {
         name="url"
         id="url"
         accept="audio/mpeg"
+        required
       />
     </>
   );

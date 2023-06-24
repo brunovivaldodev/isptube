@@ -25,6 +25,7 @@ export function MediaVideoPicker() {
         name="url"
         id="url"
         accept="video/*"
+        required
       />
     </>
   );
