@@ -1,5 +1,7 @@
 import { PrismaClient } from "@prisma/client";
 import { v4 as uuidV4 } from "uuid";
+import fs from "fs";
+import { resolve } from "path";
 
 export interface CreateMidea {
   name: string;
@@ -81,7 +83,8 @@ export class DatabaseMidea {
 
   async updade(data: UpdateMidea) {
     const midea = await this.findById(data.id);
-    return await this.prisma.midea.update({
+
+    const mideaUpdated = await this.prisma.midea.update({
       where: { id: data.id },
       data: {
         name: data.name ? data.name : midea?.name,
@@ -100,12 +103,65 @@ export class DatabaseMidea {
           : midea?.release_date,
       },
     });
+
+    if (midea) {
+      if (data.cover_url && midea.cover_url) {
+        fs.unlink(
+          resolve(__dirname, "..", "..", "uploads", midea.cover_url),
+          (err) => {
+            if (err) {
+              console.error(err);
+              return;
+            }
+          }
+        );
+      }
+
+      if (data.url && midea.url) {
+        fs.unlink(
+          resolve(__dirname, "..", "..", "uploads", midea.url),
+          (err) => {
+            if (err) {
+              console.error(err);
+              return;
+            }
+          }
+        );
+      }
+    }
+
+    return mideaUpdated;
   }
 
   async delete(id: string) {
-    await this.prisma.midea.delete({
+    await this.prisma.comments.deleteMany({
+      where: { midea_id: id },
+    });
+
+    const midea = await this.prisma.midea.delete({
       where: { id },
     });
+
+    fs.unlink(midea.url, (err) => {
+      fs.unlink(resolve(__dirname, "..", "..", "uploads", midea.url), (err) => {
+        if (err) {
+          console.error(err);
+          return;
+        }
+      });
+    });
+
+    if (midea.cover_url) {
+      fs.unlink(
+        resolve(__dirname, "..", "..", "uploads", midea.cover_url),
+        (err) => {
+          if (err) {
+            console.error(err);
+            return;
+          }
+        }
+      );
+    }
   }
 
   async list() {
