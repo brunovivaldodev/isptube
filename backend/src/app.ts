@@ -2,24 +2,29 @@ import express, { NextFunction, Request, Response } from "express";
 import { createServer } from "http";
 import { Server } from "socket.io";
 import cors from "cors";
-import 'express-async-errors'
+import "express-async-errors";
 
 import routes from "./routes";
 import AppError from "./errors/appError";
 import path from "path";
-export const app = express();
-const httpServer = createServer(app);
+const app = express();
+export const httpServer = createServer(app);
 const io = new Server(httpServer, {
   cors: {
     origin: "*",
     credentials: false,
   },
 });
+
 app.use(cors());
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "..", "uploads")));
 
 app.use(routes);
+
+io.on("connection", (socket) => {
+  console.log("a user connected");
+});
 
 app.use(
   (err: Error, resquest: Request, response: Response, next: NextFunction) => {
@@ -28,12 +33,9 @@ app.use(
         message: err.message,
       });
     }
-
     return response.status(500).json({
       status: "error",
       message: `Internal Error Server -${err.stack}`,
     });
   }
 );
-
-io.on("connection", (socket) => console.log(`someone connected: ${socket.id}`));

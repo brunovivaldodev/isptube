@@ -1,8 +1,8 @@
-import {app} from "./app"
+import { httpServer } from "./app";
 
-const start = (port : number) => {
+const start = (port: number) => {
   try {
-    app.listen(port, () => {
+    httpServer.listen(port, () => {
       console.log(`Api running at http://localhost:${port}`);
     });
   } catch (err) {
