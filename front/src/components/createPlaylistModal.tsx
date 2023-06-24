@@ -112,7 +112,7 @@ export function CreatePlaylistModal({ userId }: Props) {
                         name="visibility"
                         id="visibility"
                         required
-                        className="w-auto h-8 rounded border-gray-400 bg-gray-700 text-white"
+                        className="w-full h-8 rounded border-gray-400 bg-gray-700 text-white"
                       >
                         <option value="public">Pública</option>
                         <option value="private">Privada</option>

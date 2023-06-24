@@ -90,7 +90,7 @@ export function MideaVideoForm({ close, userId }: Props) {
         </div>
       </div>
       <div className="flex items-center gap-8 justify-around">
-        <div className="w-auto">
+        <div className="w-[177px]">
           <label
             htmlFor="genre"
             className="flex items-center gap-1.5 text-sm text-black"
@@ -104,7 +104,7 @@ export function MideaVideoForm({ close, userId }: Props) {
             className="w-full h-8 rounded border-gray-400 bg-gray-700 text-white"
           />
         </div>
-        <div className="w-auto">
+        <div className="w-[177px]">
           <label
             htmlFor="release_date"
             className="flex items-center gap-1.5 text-sm text-black"
@@ -115,10 +115,10 @@ export function MideaVideoForm({ close, userId }: Props) {
             type="date"
             name="release_date"
             id="release_date"
-            className="w-auto h-8 rounded border-gray-400 bg-gray-700 text-white"
+            className="w-full h-8 rounded border-gray-400 bg-gray-700 text-white"
           />
         </div>
-        <div className="w-auto">
+        <div className="w-[177px]">
           <label
             htmlFor="visibility"
             className="flex items-center gap-1.5 text-sm text-black"
@@ -129,7 +129,7 @@ export function MideaVideoForm({ close, userId }: Props) {
             name="visibility"
             id="visibility"
             required
-            className="w-auto h-8 rounded border-gray-400 bg-gray-700 text-white"
+            className="w-full h-8 rounded border-gray-400 bg-gray-700 text-white"
           >
             <option value="public">Pública</option>
             <option value="private">Privada</option>
@@ -164,7 +164,7 @@ export function MideaVideoForm({ close, userId }: Props) {
         name="description"
         id="description"
         spellCheck={false}
-        className="w-full flex-1 resize-none rounded border-0 bg-transparent p-0 text-lg leading-relaxed text-gray-100 placeholder:text-gray-400 focus:ring-0"
+        className="w-full flex-1 resize-none rounded border-0 bg-gray-700 placeholder:pl-4 text p-0 text-lg leading-relaxed text-gray-100 placeholder:text-gray-400 focus:ring-0"
         placeholder="Descrição Do Mídea"
       />
 

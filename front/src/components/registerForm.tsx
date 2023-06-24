@@ -75,7 +75,7 @@ export function RegisterForm() {
           Email
         </label>
         <input
-          type="text"
+          type="email"
           name="name"
           id="name"
           required
@@ -92,7 +92,7 @@ export function RegisterForm() {
           Senha
         </label>
         <input
-          type="text"
+          type="password"
           name="name"
           id="name"
           required
@@ -109,7 +109,7 @@ export function RegisterForm() {
           Confirmar Password
         </label>
         <input
-          type="text"
+          type="password"
           name="name"
           id="name"
           required
@@ -124,7 +124,7 @@ export function RegisterForm() {
         spellCheck={false}
         value={description}
         onChange={(e) => setDescription(e.target.value)}
-        className="w-full flex-1 resize-none rounded border-0 bg-transparent p-0 text-lg leading-relaxed text-gray-100 placeholder:text-gray-400 focus:ring-0"
+        className="w-full flex-1 resize-none rounded border-0  bg-gray-700 p-0 text-lg leading-relaxed text-gray-100 placeholder:text-gray-400 focus:ring-0"
         placeholder="Descrição Do Usuário"
       />
 

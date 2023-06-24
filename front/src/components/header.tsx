@@ -36,7 +36,7 @@ export function Header({ userId }: Props) {
           onKeyDown={(e) => {
             handleKeyPress(e);
           }}
-          className="w-[580px] h-10 rounded-md flex-1"
+          className="w-[580px] h-10 rounded-md flex-1 bg-gray-700 placeholder:pl-4 text"
         />
         <Search
           className="hover:text-red-700"

@@ -28,7 +28,7 @@ export function LoginForm() {
 
   return (
     <form onSubmit={handleLogin} className="flex flex-1 flex-col gap-2">
-      <div className="">
+      <div className="w-[250px]">
         <label
           htmlFor="name"
           className="flex items-center gap-1.5 text-sm text-black"
@@ -36,14 +36,14 @@ export function LoginForm() {
           Email
         </label>
         <input
-          type="text"
+          type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
           className="w-full h-8 rounded border-gray-400 bg-gray-700 text-white"
         />
       </div>
-      <div className="">
+      <div className="w-[250px]">
         <label
           htmlFor="name"
           className="flex items-center gap-1.5 text-sm text-black"
@@ -51,7 +51,7 @@ export function LoginForm() {
           Senha
         </label>
         <input
-          type="text"
+          type="password"
           name="password"
           value={password}
           onChange={(e) => setpassword(e.target.value)}

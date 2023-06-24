@@ -28,6 +28,11 @@ export function EditModal({ midea }: Props) {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
 
+    const type = midea.type == "video" ? "video" : "music";
+
+    formData.append("type", type);
+    close();
+
     await api.put(`/mideas/${midea.id}`, formData);
   }
 
@@ -127,7 +132,7 @@ export function EditModal({ midea }: Props) {
                       </div>
                     </div>
                     <div className="flex items-center gap-8 justify-around">
-                      <div className="w-auto">
+                      <div className="w-[177px]">
                         <label
                           htmlFor="genre"
                           className="flex items-center gap-1.5 text-sm text-black"
@@ -142,7 +147,7 @@ export function EditModal({ midea }: Props) {
                           className="w-full h-8 rounded border-gray-400 bg-gray-700 text-white"
                         />
                       </div>
-                      <div className="w-auto">
+                      <div className="w-[177px]">
                         <label
                           htmlFor="release_date"
                           className="flex items-center gap-1.5 text-sm text-black"
@@ -154,22 +159,10 @@ export function EditModal({ midea }: Props) {
                           name="release_date"
                           id="release_date"
                           placeholder={midea.release_date}
-                          className="w-auto h-8 rounded border-gray-400 bg-gray-700 text-white"
-                        />
-                        <input
-                          type="text"
-                          value={"video"}
-                          name="type"
-                          className="hidden"
-                        />
-                        <input
-                          type="text"
-                          name="user_id"
-                          value={midea.user_id}
-                          className="hidden"
+                          className="w-full h-8 rounded border-gray-400 bg-gray-700 text-white"
                         />
                       </div>
-                      <div className="w-auto">
+                      <div className="w-[177px]">
                         <label
                           htmlFor="visibility"
                           className="flex items-center gap-1.5 text-sm text-black"
@@ -179,7 +172,7 @@ export function EditModal({ midea }: Props) {
                         <select
                           name="visibility"
                           id="visibility"
-                          className="w-auto h-8 rounded border-gray-400 bg-gray-700 text-white"
+                          className="w-full h-8 rounded border-gray-400 bg-gray-700 text-white"
                         >
                           <option value="public">Pública</option>
                           <option value="private">Privada</option>
@@ -215,7 +208,7 @@ export function EditModal({ midea }: Props) {
                       id="description"
                       placeholder={midea.description}
                       spellCheck={false}
-                      className="w-full flex-1 resize-none rounded border-0 bg-transparent p-0 text-lg leading-relaxed text-gray-100 placeholder:text-gray-400 focus:ring-0"
+                      className="w-full flex-1 resize-none rounded border-0  bg-gray-700 p-0 text-lg leading-relaxed text-gray-100 placeholder:text-gray-400 focus:ring-0"
                     />
 
                     <button

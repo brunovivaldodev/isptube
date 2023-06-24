@@ -1,12 +1,12 @@
 import { api, nextApi } from "@/lib/api";
-import { ArrowDownToLine, ListPlus, ThumbsDown, ThumbsUp } from "lucide-react";
+import { ThumbsDown, ThumbsUp } from "lucide-react";
 import { Mideas as Midea } from "@/app/home/page";
 import { Mideas } from "@/components/mideas";
 import { Header } from "@/components/header";
 import Link from "next/link";
 import Image from "next/image";
 import { getUser } from "@/contexts/auth";
-import { Comment } from "@/components/CommentForm";
+import { Comment } from "@/components/commentForm";
 import { CopyToClipboard } from "@/components/copyClipboard";
 import { AddToPlaylist } from "@/components/addToPlaylist";
 import { Playlists } from "@/app/playlists/page";
