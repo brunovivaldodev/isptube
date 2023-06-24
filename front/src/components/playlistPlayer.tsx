@@ -1,12 +1,10 @@
 "use client";
 import { Playlists } from "@/app/playlists/page";
 import { api, nextApi } from "@/lib/api";
-import { Send, ThumbsDown, ThumbsUp } from "lucide-react";
+import { Download, Send, ThumbsDown, ThumbsUp } from "lucide-react";
 import Image from "next/image";
 import { KeyboardEvent, useState } from "react";
 import { CopyToClipboard } from "./copyClipboard";
-import { ListPlus } from "lucide-react";
-import { ArrowDownToLine } from "lucide-react";
 import { Playlist } from "./playlist";
 import Link from "next/link";
 import { UserPayload } from "@/contexts/auth";
@@ -146,6 +144,15 @@ export function PlaylistPlayer({ playlist, userLogged }: Props) {
                   <CopyToClipboard
                     link={`${nextApi}/midea/${list.mideas[currentVideo].id}`}
                   />
+                  <Link
+                    href={`${api.getUri()}/${list.mideas[currentVideo].url}`}
+                    download
+                    target="_blank"
+                    className="flex items-center"
+                  >
+                    <Download width={16} height={16} className="mx-2" />
+                    Download
+                  </Link>
                 </div>
               </div>
               <div className="mt-3">

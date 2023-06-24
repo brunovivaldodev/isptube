@@ -1,5 +1,5 @@
 import { api, nextApi } from "@/lib/api";
-import { ThumbsDown, ThumbsUp } from "lucide-react";
+import { Download, ThumbsDown, ThumbsUp } from "lucide-react";
 import { Mideas as Midea } from "@/app/home/page";
 import { Mideas } from "@/components/mideas";
 import { Header } from "@/components/header";
@@ -79,6 +79,15 @@ export default async function Midea({ params: { id } }: Params) {
                   mideaId={midea.id}
                   userId={userLogged.sub}
                 />
+                <Link
+                  href={`${api.getUri()}/${midea.url}`}
+                  download
+                  target="_blank"
+                  className="flex items-center"
+                >
+                  <Download width={16} height={16} className="mx-2" />
+                  Download
+                </Link>
               </div>
             </div>
             <div className="mt-3">

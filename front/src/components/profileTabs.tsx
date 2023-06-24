@@ -17,8 +17,13 @@ function classNames(...classes: any[]) {
 }
 export function ProfileTabs({ user, userLoggedId }: Props) {
   const isUserLogged = userLoggedId === user.id;
-  const videos = user.midea.filter((midea) => midea.type === "video");
-  const musics = user.midea.filter((midea) => midea.type === "music");
+  let mideas = user.midea;
+  if (!isUserLogged) {
+    mideas = mideas.filter((midea) => midea.visibility === "public");
+  }
+
+  let videos = mideas.filter((midea) => midea.type === "video");
+  let musics = mideas.filter((midea) => midea.type === "music");
 
   return (
     <Tab.Group>

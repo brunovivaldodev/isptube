@@ -15,6 +15,14 @@ export default async function Profile({ params: { id } }: Params) {
   const userLogged = getUser().sub;
   await ProfileContext.getMideas(id);
 
+  const isUserLogged = userLogged === ProfileContext.user.id;
+  let mideas = ProfileContext.user.midea;
+  if (!isUserLogged) {
+    mideas = ProfileContext.user.midea.filter(
+      (midea) => midea.visibility === "public"
+    );
+  }
+
   return (
     <div>
       <Header userId={userLogged} />
@@ -39,7 +47,7 @@ export default async function Profile({ params: { id } }: Params) {
         </figure>
         <div className="ml-4">
           <span>{ProfileContext.user.name}</span>
-          <p>{ProfileContext.user.midea.length} Mideas</p>
+          <p>{mideas?.length} Mideas</p>
         </div>
       </div>
       <div>
