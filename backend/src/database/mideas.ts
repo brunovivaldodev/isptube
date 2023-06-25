@@ -3,6 +3,7 @@ import { v4 as uuidV4 } from "uuid";
 import fs from "fs";
 import { resolve } from "path";
 import { convertSecondsToMinutes } from "../helpers/time";
+import { AddToCompressMidea } from "../jobs/compressMideaQueue";
 
 export interface CreateMidea {
   name: string;
@@ -72,7 +73,7 @@ export class DatabaseMidea {
   async create(data: CreateMidea) {
     const time = convertSecondsToMinutes(data.time);
 
-    return await this.prisma.midea.create({
+    const midea = await this.prisma.midea.create({
       data: {
         ...data,
         time,
@@ -84,6 +85,10 @@ export class DatabaseMidea {
           : undefined,
       },
     });
+
+    await AddToCompressMidea(midea);
+
+    return midea;
   }
 
   async updade(data: UpdateMidea) {
