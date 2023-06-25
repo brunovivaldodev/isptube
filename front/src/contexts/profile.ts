@@ -1,3 +1,4 @@
+import { Playlists } from "@/app/playlists/page";
 import { api } from "@/lib/api";
 
 export interface Midea {
@@ -26,6 +27,7 @@ export interface User {
   avatarUrl: string;
   description?: string;
   midea: Midea[];
+  playlists: Playlists[];
 }
 
 export class ProfileContext {

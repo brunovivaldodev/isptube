@@ -34,7 +34,7 @@ export class DatabaseUser {
   async findByID(id: string) {
     return await this.prisma.user.findUnique({
       where: { id },
-      include: { midea: true },
+      include: { midea: true, playlists: { include: { mideas: true } } },
     });
   }
 }
