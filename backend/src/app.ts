@@ -9,7 +9,7 @@ import AppError from "./errors/appError";
 import path from "path";
 const app = express();
 export const httpServer = createServer(app);
-const io = new Server(httpServer, {
+export const io = new Server(httpServer, {
   cors: {
     origin: "*",
     credentials: false,
