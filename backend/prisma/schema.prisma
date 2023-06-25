@@ -37,6 +37,7 @@ model Midea {
   release_date DateTime?
   type         String
   visibility   String
+  time         String
   cover_url    String?
   url          String
   user_id      String

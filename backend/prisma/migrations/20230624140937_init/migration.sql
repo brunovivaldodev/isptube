@@ -24,6 +24,7 @@ CREATE TABLE "mideas" (
     "release_date" TIMESTAMP(3),
     "type" TEXT NOT NULL,
     "visibility" TEXT NOT NULL,
+    "time" TEXT NOT NULL,
     "cover_url" TEXT,
     "url" TEXT NOT NULL,
     "user_id" TEXT NOT NULL,

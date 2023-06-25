@@ -2,6 +2,7 @@ import { PrismaClient } from "@prisma/client";
 import { v4 as uuidV4 } from "uuid";
 import fs from "fs";
 import { resolve } from "path";
+import { convertSecondsToMinutes } from "../helpers/time";
 
 export interface CreateMidea {
   name: string;
@@ -56,6 +57,7 @@ export interface CreateMidea {
   cover_url?: string;
   url: string;
   user_id: string;
+  time: number;
 }
 
 export interface CreateComment {
@@ -68,9 +70,12 @@ export class DatabaseMidea {
   readonly prisma = new PrismaClient();
 
   async create(data: CreateMidea) {
+    const time = convertSecondsToMinutes(data.time);
+
     return await this.prisma.midea.create({
       data: {
         ...data,
+        time,
         id: uuidV4(),
         created_at: new Date(),
         updated_at: new Date(),

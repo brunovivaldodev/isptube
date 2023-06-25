@@ -306,6 +306,25 @@
   dependencies:
     "@jridgewell/trace-mapping" "0.3.9"
 
+"@ffprobe-installer/darwin-x64@5.0.0":
+  "integrity" "sha512-Zl0UkZ+wW/eyMKBPLTUCcNQch2VDnZz/cBn1DXv3YtCBVbYd9aYzGj4MImdxgWcoE0+GpbfbO6mKGwMq5HCm6A=="
+  "resolved" "https://registry.npmjs.org/@ffprobe-installer/darwin-x64/-/darwin-x64-5.0.0.tgz"
+  "version" "5.0.0"
+
+"@ffprobe-installer/ffprobe@^1.4.1":
+  "integrity" "sha512-3WJvxU0f4d7IOZdzoVCAj9fYtiQNC6E0521FJFe9iP5Ej8auTXU7TsrUzIAG1CydeQI+BnM3vGog92SCcF9KtA=="
+  "resolved" "https://registry.npmjs.org/@ffprobe-installer/ffprobe/-/ffprobe-1.4.1.tgz"
+  "version" "1.4.1"
+  optionalDependencies:
+    "@ffprobe-installer/darwin-arm64" "5.0.1"
+    "@ffprobe-installer/darwin-x64" "5.0.0"
+    "@ffprobe-installer/linux-arm" "5.0.0"
+    "@ffprobe-installer/linux-arm64" "5.0.0"
+    "@ffprobe-installer/linux-ia32" "5.0.0"
+    "@ffprobe-installer/linux-x64" "5.0.0"
+    "@ffprobe-installer/win32-ia32" "5.0.0"
+    "@ffprobe-installer/win32-x64" "5.0.0"
+
 "@istanbuljs/load-nyc-config@^1.0.0":
   "integrity" "sha512-VjeHSlIzpv/NyD3N0YuHfXOPDIixcA1q2ZV98wsMqcYlPmv2n3Yb2lYP9XMElnaFVXg5A7YLTeLu6V84uQDjmQ=="
   "resolved" "https://registry.npmjs.org/@istanbuljs/load-nyc-config/-/load-nyc-config-1.1.0.tgz"
@@ -1744,6 +1763,15 @@
   "integrity" "sha512-ts6Wi+2j3jQjqi70w5AlN8DFnkSwC+MqmxEzdEALB2qXZYV3X/b1CTfgPLGJNMeAWxdPfU8FO1ms3NUfaHCPYg=="
   "resolved" "https://registry.npmjs.org/get-stream/-/get-stream-6.0.1.tgz"
   "version" "6.0.1"
+
+"get-video-duration@^4.1.0":
+  "integrity" "sha512-kDmnD/C/WFHmZx7eV2duUNCwAH6w9YwpigiUHmq7cRNmxuTvcJ/otvcxa4A5GDus2iSZ+CZEA5e0va/r5ZWumw=="
+  "resolved" "https://registry.npmjs.org/get-video-duration/-/get-video-duration-4.1.0.tgz"
+  "version" "4.1.0"
+  dependencies:
+    "@ffprobe-installer/ffprobe" "^1.4.1"
+    "execa" "^5.0.0"
+    "is-stream" "^2.0.0"
 
 "glob-parent@~5.1.2":
   "integrity" "sha512-AOIgSQCepiJYwP3ARnGx+5VnTu2HBYdzbGP45eLw1vr3zB3vZLeyed1sC9hnbcOc9/SrMyM5RPQrkGz4aS9Zow=="
