@@ -1,5 +1,5 @@
 "use client";
-import { Bell, Search } from "lucide-react";
+import { RadioReceiver, Search } from "lucide-react";
 
 import { UploadModal } from "./uploadModal";
 import { KeyboardEvent, useState } from "react";
@@ -50,8 +50,17 @@ export function Header({ userId }: Props) {
         <div className="flex items-center w-32 h-10 rounded-full bg-red-700">
           <UploadModal userId={userId} />
         </div>
-        <div className="flex items-center">
-          <Bell className="flex items-center" />
+        <div
+          className="flex items-center cursor-pointer"
+          onClick={() => {
+            router.push("/radio");
+          }}
+        >
+          <RadioReceiver
+            className="flex items-center"
+            color={"rgb(153 27 27"}
+            size={"32"}
+          />
         </div>
       </div>
     </header>
