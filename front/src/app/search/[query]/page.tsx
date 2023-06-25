@@ -101,7 +101,7 @@ export default async function Search({ params: { query } }: Params) {
                         fill
                       />
                       <span className="bg-zinc-800 m-2 absolute bottom-0 left-0">
-                        45:34
+                        {midea.time}
                       </span>
                     </div>
                   </Link>

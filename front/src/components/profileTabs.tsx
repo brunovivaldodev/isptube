@@ -103,7 +103,7 @@ export function ProfileTabs({ user, userLoggedId }: Props) {
                         height={50}
                       />
                       <span className="bg-zinc-800 m-2 absolute bottom-0 left-0">
-                        45:34
+                        {video.time}
                       </span>
                     </Link>
                     {isUserLogged ? (
@@ -153,7 +153,7 @@ export function ProfileTabs({ user, userLoggedId }: Props) {
                         height={50}
                       />
                       <span className="bg-zinc-800 m-2 absolute bottom-0 left-0">
-                        45:34
+                        {video.time}
                       </span>
                     </Link>
                     {isUserLogged ? (

@@ -8,6 +8,7 @@ export interface Midea {
   music_group?: string;
   description?: string;
   genre?: string;
+  time: string;
   release_date?: string;
   type: string;
   visibility: string;

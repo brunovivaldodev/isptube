@@ -41,7 +41,7 @@ export function Playlist({ mideas, exclude, name }: Props) {
                   height={32}
                 />
                 <span className="bg-zinc-800 m-2 absolute bottom-0 left-0">
-                  45:34
+                  {midea.time}
                 </span>
               </div>
             </Link>
