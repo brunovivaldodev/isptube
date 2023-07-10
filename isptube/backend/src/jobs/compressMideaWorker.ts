@@ -31,7 +31,7 @@ export const worker = new Worker(
         })
         .on("error", (err) => {
           reject(() => {
-            return "File compressed successfully";
+            return "File compresse Error";
           });
         });
     });
