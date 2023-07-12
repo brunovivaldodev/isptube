@@ -2,11 +2,12 @@
 import { Community } from "@/components/community";
 import { EmptyMideas, MideaEnum } from "@/components/emptyMidea";
 import { Header } from "@/components/header";
-import { api } from "@/lib/api";
+import { api, socket } from "@/lib/api";
 import Image from "next/image";
 import Link from "next/link";
 import { Tab } from "@headlessui/react";
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 
 function classNames(...classes: any[]) {
   return classes.filter(Boolean).join(" ");
@@ -53,6 +54,15 @@ interface Props {
 
 export default function Home({ userId }: Props) {
   const [mideas, setMideas] = useState<Mideas[]>([]);
+  const [message, setMessage] = useState(0);
+  const router = useRouter();
+
+  socket.on("upload", (message) => {
+    setMessage(message);
+    if (message === 100) {
+      window.location.reload();
+    }
+  });
 
   const videos = mideas.filter((midea) => midea.type === "video");
   const musics = mideas.filter((midea) => midea.type === "music");
@@ -262,6 +272,12 @@ export default function Home({ userId }: Props) {
               </Tab.Panel>
             </Tab.Panels>
           </Tab.Group>
+          {message !== 0 && message !== 100 && (
+            <div className="flex flex-col m-2 absolute bottom-0 right-10">
+              <label>Downloading progress</label>
+              <progress id="file" value={message} max="100"></progress>
+            </div>
+          )}
         </section>
         <Community />
       </div>
