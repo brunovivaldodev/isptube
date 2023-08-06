@@ -1,39 +1,48 @@
-Aqui se encontra a descrição necessária para rodar este projecto
+# ISPTUBE
+> Plataforma digital de gestão e compartilhamento de conteúdos multimídia, com funcionalidades semelhantes às plataformas como Youtube e Spotify.
 
-Backend
+Essa plataforma oferece aos usuários a possibilidade de acessar e reproduzir arquivos de vídeo, música e outros tipos de mídia online. Além disso, a plataforma também permite que os usuários compartilhem e carreguem seus próprios arquivos multimídia.
 
-Usou-se o banco de dados postgres
-E o redis no acto da conversão do mídea
-
-Tenha estes dois bancos em sua máquina ou adapte o provider em prisma/schema.prisma no caso de não quiser usar postgres
-Tenha o Nodejs instalado 
-
-no directório raiz rode 
-
-npm i para instalar as dependências do projecto
-
-npm run prisma generate  
-npm run prisma migrate dev  para rodar as migrações no banco de dados
-
-Depois rode 
-npm run dev para iniciar o servidor
+Portanto, esse projeto visa fornecer uma solução conveniente e eficiente para a gestão e compartilhamento de conteúdos multimídia, utilizando a tecnologia de streaming para facilitar o acesso e a reprodução de arquivos sem a necessidade de baixá-los.
 
 
-Frontend
-
-entre na pasta Frontend
-
-e Rode 
-npm run i
-npm run dev
+![](./home.png)
 
 
-Desktop
+## Exemplo de uso
 
-entre na pasta Desktop
+Entre na pasta backend e instale as dependências 
 
-e depois na app e rode npm i e npm run dev
+```sh
+cd backend
+npm install
+```
+Faça o mesmo com as pastas frontend ou desktop 
 
-volte para desktop
-npm run i
-npm run dev
+Depois de instaladas configure os serviços de banco de dados de sua preferência e o redis para gestão das filas. 
+
+
+## Features
+
+- Using new Next.js 13 Beta
+- New `/app` dir,
+- Routing, Layouts, Nested Layouts and Layout Groups
+- Data Fetching, Caching and Mutation
+- Uses client and server components from **React 18**
+- API Routes
+- Queue system with bullmq
+- ORM using **Prisma**
+- PostgreSQL Database
+- Redis cache Database
+- Written in **TypeScript**
+
+
+## Contributing
+
+1. Faça o _fork_ do projeto 
+2. Crie uma _branch_ para sua modificação (`git checkout -b feature/fooBar`)
+3. Faça o _commit_ (`git commit -am 'Add some fooBar'`)
+4. _Push_ (`git push origin feature/fooBar`)
+5. Crie um novo _Pull Request_
+
+
