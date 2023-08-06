@@ -26,10 +26,7 @@ Depois de instaladas configure os serviços de banco de dados de sua preferênci
 
 - Using new Next.js 13 Beta
 - New `/app` dir,
-- Routing, Layouts, Nested Layouts and Layout Groups
-- Data Fetching, Caching and Mutation
-- Uses client and server components from **React 18**
-- API Routes
+- WebSocket Upload Progress
 - Queue system with bullmq
 - ORM using **Prisma**
 - PostgreSQL Database
